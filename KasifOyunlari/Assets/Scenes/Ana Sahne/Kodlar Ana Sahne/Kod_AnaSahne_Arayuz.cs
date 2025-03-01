@@ -49,7 +49,7 @@ public class Kod_AnaSahne_Arayuz : MonoBehaviour
     IEnumerator OyunSahnesineGit()
     {
         // Beklet
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
 
         SceneManager.LoadScene(secilen_OyunNumarasi);
     }
