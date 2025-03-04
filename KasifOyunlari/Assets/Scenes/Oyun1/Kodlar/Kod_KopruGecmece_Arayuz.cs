@@ -31,6 +31,7 @@ public class Kod_KopruGecmece_Arayuz : MonoBehaviour
     void Start()
     {
         // Büyük harfli kelimeler ekliyoruz
+        // TODO kelime ve kategori seklinde ekleyecegiz.
         lst_kelimeler.Add("TÜRKİYE");
         lst_kelimeler.Add("AFYON");
         lst_kelimeler.Add("ANKARA");
@@ -52,6 +53,19 @@ public class Kod_KopruGecmece_Arayuz : MonoBehaviour
         lst_kelimeler.Add("ERZURUM");
         lst_kelimeler.Add("NİĞDE");
         lst_kelimeler.Add("KIRŞEHİR");
+        lst_kelimeler.Add("ERBAKAN");
+        lst_kelimeler.Add("SAADET");
+        lst_kelimeler.Add("ANADOLU");
+        lst_kelimeler.Add("GENÇLİK");
+        lst_kelimeler.Add("FİLİSTİN");
+        lst_kelimeler.Add("NİJERJA");
+        lst_kelimeler.Add("ENDONEZYA");
+        lst_kelimeler.Add("MISIR");
+        lst_kelimeler.Add("CİHAD");
+        lst_kelimeler.Add("PAKİSTAN");
+        lst_kelimeler.Add("İRAN");
+        lst_kelimeler.Add("MALEZYA");
+        lst_kelimeler.Add("BANGLADEŞ");
 
         ArananKelimeyiBelirle();
     }
