@@ -9,9 +9,18 @@ public class Oyun2_PlayerController : MonoBehaviour
     public float laneDistance = 3f; 
     private int currentLane = 0;
     public int score = 0;
+    
+    [SerializeField] private Text scoreText;
+    [SerializeField] private GameObject finishText;
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            finishText.SetActive(false);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        
         transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         Move();
     }
@@ -38,19 +47,22 @@ public class Oyun2_PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (false)
+        if (other.CompareTag("Boykot"))
         {
-            //turk malı
-            if (false)
+            score = 0;
+            scoreText.text = "Skor: " + score;
+            Debug.Log("Game Over");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        if (other.CompareTag("TR"))
+        {
+            score++; 
+            scoreText.text = "Skor: " + score;
+            if (score == 9)
             {
-                score += 30;
-                Debug.Log("Skor: " + score);
-            }
-            //boykot
-            else if (false)
-            {
-                Debug.Log("Oyun Bitti! Skor: " + score);
-                //Oyunu bitir
+                finishText.SetActive(true);
+                Debug.Log("Kaşif kazandı!");
             }
         }
     }
