@@ -8,9 +8,6 @@ public class Oyun2_Secimler : MonoBehaviour
     public List<GameObject> boykotPanels;
     public List<GameObject> trPanels;
     
-    private GameObject[] exBoykotPanels;
-    private GameObject[] exTrPanels;
-
     private int sagSol;
     
     private void Start()
