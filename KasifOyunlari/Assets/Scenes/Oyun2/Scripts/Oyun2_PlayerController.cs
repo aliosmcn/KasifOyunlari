@@ -5,13 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class Oyun2_PlayerController : MonoBehaviour
 {
+    private Rigidbody rb;
+    
     public float moveSpeed = 5f;
-    public float laneDistance = 3f; 
+    public float laneDistance = 2f; 
     private int currentLane = 0;
     public int score = 0;
     
     [SerializeField] private Text scoreText;
     [SerializeField] private GameObject finishText;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
@@ -21,8 +28,15 @@ public class Oyun2_PlayerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         
-        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         Move();
+    }
+
+    private void FixedUpdate()
+    {
+        //rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, moveSpeed);
+        float move = moveSpeed * Time.fixedDeltaTime;
+        Vector3 newPosition = rb.position + transform.forward * move;
+        rb.MovePosition(newPosition);
     }
 
     private void Move()
@@ -42,6 +56,7 @@ public class Oyun2_PlayerController : MonoBehaviour
     {
         Vector3 newPosition = transform.position;
         newPosition.x = currentLane == 0 ? -laneDistance : laneDistance;
+        newPosition.y = transform.position.y; // Y eksenini koru
         transform.position = Vector3.Lerp(transform.position, newPosition, 5f * Time.deltaTime);
     }
 

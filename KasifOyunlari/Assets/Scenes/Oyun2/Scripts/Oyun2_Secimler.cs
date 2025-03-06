@@ -19,16 +19,16 @@ public class Oyun2_Secimler : MonoBehaviour
             {
                 int panelIndex1 = RandomSayiUret(0, boykotPanels.Count);
                 int panelIndex2 = RandomSayiUret(0, boykotPanels.Count);
-                boykotPanels[panelIndex1].transform.position = new Vector3(player.transform.position.x + 2f, player.transform.position.y, player.transform.position.z + 20f * i);
-                trPanels[panelIndex2].transform.position = new Vector3(player.transform.position.x - 2f, player.transform.position.y, player.transform.position.z + 20f * i);
+                boykotPanels[panelIndex1].transform.position = new Vector3(player.transform.position.x + 2f, player.transform.position.y + 0.7f, player.transform.position.z + 20f * i);
+                trPanels[panelIndex2].transform.position = new Vector3(player.transform.position.x - 2f, player.transform.position.y+ 0.7f, player.transform.position.z + 20f * i);
                 RemoveList(panelIndex1, panelIndex2);
             }
             else
             {
                 int panelIndex3 = RandomSayiUret(0, boykotPanels.Count);
                 int panelIndex4 = RandomSayiUret(0, boykotPanels.Count);
-                boykotPanels[panelIndex3].transform.position = new Vector3(player.transform.position.x - 2f, player.transform.position.y, player.transform.position.z + 20f * i);
-                trPanels[panelIndex4].transform.position = new Vector3(player.transform.position.x + 2f, player.transform.position.y, player.transform.position.z + 20f * i);
+                boykotPanels[panelIndex3].transform.position = new Vector3(player.transform.position.x - 2f, player.transform.position.y + 0.7f, player.transform.position.z + 20f * i);
+                trPanels[panelIndex4].transform.position = new Vector3(player.transform.position.x + 2f, player.transform.position.y + 0.7f, player.transform.position.z + 20f * i);
                 RemoveList(panelIndex3, panelIndex4);
             }
         }
