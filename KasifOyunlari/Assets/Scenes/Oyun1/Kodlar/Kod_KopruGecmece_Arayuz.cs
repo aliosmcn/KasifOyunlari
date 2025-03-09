@@ -20,7 +20,8 @@ public class Kod_KopruGecmece_Arayuz : MonoBehaviour
 
     public int bulunanHarfSayisi = 0;
 
-    public Image tavsan;
+    //public Image tavsan;
+    public Transform tr_Kasif;
 
     public Transform kazandiniz;
     public bool kazandinizMi = false;
@@ -174,15 +175,15 @@ public class Kod_KopruGecmece_Arayuz : MonoBehaviour
     {
         // gidilecek pozisyonu belirle // toplam mesafe 700 birim
         Vector3 gidilecekPozisyon = 
-                        new Vector3(-300 + (Mathf.Round(bulunanHarfSayisi) / arr_arananKelime.Length) * 600,
-                                     100,
-                                     0
+                        new Vector3(-5.5f + (Mathf.Round(bulunanHarfSayisi) / arr_arananKelime.Length) * 13,
+                                     2.6f,
+                                     -0.7f
                                    );
         
         //Debug.Log("GİDİLECEK POZİSYON: " + gidilecekPozisyon);
 
         //tavsan.rectTransform.localPosition = new Vector3(-50,100,0);
-        tavsan.rectTransform.localPosition = gidilecekPozisyon;
+        tr_Kasif.position = gidilecekPozisyon;
     }
 
     // Genel butonlar
