@@ -2,21 +2,21 @@ using System;
 
 namespace Scenes.Oyun2.Scripts
 {
-    public static class Oyun2GeneralEvents
+    public static class Oyun2_GeneralEvents
     {
         #region GeneralEvent
 
         public static Action OnGameStarted;
         public static Action OnGameEnded;
+        
+        public static Action OnWrongeChoise;
 
         #endregion
         
-        #region Player Events
-
-        public static Action OnToRight;
-        public static Action OnToLeft;
-
+        #region ScoreEvents
+        
+        public static Action<int> OnScoreChanged;
+        
         #endregion
-
     }
 }
