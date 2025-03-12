@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Scenes.Oyun2.Scripts;
 using UnityEngine;
 
 public class Oyun2_Secimler : MonoBehaviour
@@ -43,5 +44,9 @@ public class Oyun2_Secimler : MonoBehaviour
     {
         boykotPanels.RemoveAt(obj);
         trPanels.RemoveAt(obj2);
+        if (boykotPanels.Count == 0)
+        {
+            Oyun2_GeneralEvents.OnGameEnded.Invoke();
+        }
     }
 }

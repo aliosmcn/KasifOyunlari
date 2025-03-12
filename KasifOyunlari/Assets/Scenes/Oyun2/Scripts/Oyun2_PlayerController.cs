@@ -1,84 +1,97 @@
 using System;
+using Scenes.Oyun2.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Oyun2_PlayerController : MonoBehaviour
 {
+    private Animator animator;
     private Rigidbody rb;
     
-    public float moveSpeed = 5f;
+    [Header("Movement")]
+    public float moveSpeed = 7f;
     public float laneDistance = 2f; 
-    private int currentLane = 0;
-    public int score = 0;
+    private int currentLane = 1;
+    private Vector3 targetPosition;
+    private bool canMove = true;
     
-    [SerializeField] private Text scoreText;
-    [SerializeField] private GameObject finishText;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        targetPosition = new Vector3(2f, transform.position.y, transform.position.z);
+        
+        MoveToLane();
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            finishText.SetActive(false);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-        
-        Move();
+        HandleInput();
     }
 
     private void FixedUpdate()
     {
-        //rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, moveSpeed);
-        float move = moveSpeed * Time.fixedDeltaTime;
-        Vector3 newPosition = rb.position + transform.forward * move;
-        rb.MovePosition(newPosition);
+        if (canMove)
+        {
+            MoveForward();
+            MoveToLane();
+        }
     }
 
-    private void Move()
+    private void HandleInput()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow) && currentLane > 0)
         {
             currentLane--;
+            targetPosition = new Vector3(-laneDistance, transform.position.y, transform.position.z);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) && currentLane < 1)
         {
             currentLane++;
+            targetPosition = new Vector3(laneDistance, transform.position.y, transform.position.z);
         }
-        MoveToLane();
-    }
 
-    void MoveToLane()
-    {
-        Vector3 newPosition = transform.position;
-        newPosition.x = currentLane == 0 ? -laneDistance : laneDistance;
-        newPosition.y = transform.position.y; // Y eksenini koru
-        transform.position = Vector3.Lerp(transform.position, newPosition, 5f * Time.deltaTime);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Boykot"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            score = 0;
-            scoreText.text = "Skor: " + score;
-            Debug.Log("Game Over");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            animator.SetBool("isFall", true);
         }
+    }
 
+    private void MoveForward()
+    {
+        rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, moveSpeed);
+    }
+
+    private void MoveToLane()
+    {
+        Vector3 newPosition = new Vector3(targetPosition.x, transform.position.y, transform.position.z);
+        rb.MovePosition(Vector3.Lerp(transform.position, newPosition, Time.fixedDeltaTime * 5f));
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.CompareTag("TR"))
         {
-            score++; 
-            scoreText.text = "Skor: " + score;
-            if (score == 9)
-            {
-                finishText.SetActive(true);
-                Debug.Log("Kaşif kazandı!");
-            }
+            Oyun2_GeneralEvents.OnScoreChanged(1);
         }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.CompareTag("Boykot"))
+        {
+            rb.linearVelocity = Vector3.zero;
+            canMove = false;
+            animator.SetBool("isFall", true);
+            Invoke("LoseGame", 1f);
+        }
+    }
+
+    private void LoseGame()
+    {
+        Oyun2_GeneralEvents.OnGameEnded.Invoke();
     }
 }
