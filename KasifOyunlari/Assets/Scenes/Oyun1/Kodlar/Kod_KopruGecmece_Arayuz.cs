@@ -24,6 +24,8 @@ public class Kod_KopruGecmece_Arayuz : MonoBehaviour
     //public Image tavsan;
     public Transform tr_Kasif;
 
+    private Animator animator;
+
     public Transform kazandiniz;
     public bool kazandinizMi = false;
 
@@ -34,6 +36,8 @@ public class Kod_KopruGecmece_Arayuz : MonoBehaviour
 
     void Start()
     {
+        animator = tr_Kasif.GetComponent<Animator>();
+
         // Büyük harfli kelimeler ekliyoruz
         // TODO kelime ve kategori seklinde ekleyecegiz.
         lst_kelimeler.Add("TÜRKİYE");       lst_kategoriler.Add("Ülkeler");
@@ -148,8 +152,12 @@ public class Kod_KopruGecmece_Arayuz : MonoBehaviour
                 {
                     // kaybettiniz
                     kazandiniz.GetComponent<TMP_Text>().text = "Kaybettiniz !";
-
+                    
+                    kazandiniz.GetComponent<TMP_Text>().color = Color.red;
+                    
                     kazandiniz.gameObject.SetActive(true);
+                    
+                    animator.SetBool("isFall", true);
                 }
             }
 
@@ -176,6 +184,8 @@ public class Kod_KopruGecmece_Arayuz : MonoBehaviour
 
             kazandinizMi = true;
 
+            kazandiniz.GetComponent<TMP_Text>().color = Color.green;
+            
             kazandiniz.gameObject.SetActive(true);
         }
     }
