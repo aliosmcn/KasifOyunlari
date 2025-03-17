@@ -9,6 +9,7 @@ using TMPro;
 public class Kod_KopruGecmece_Arayuz : MonoBehaviour
 {
     public List<string> lst_kelimeler = new List<string>();
+    public List<string> lst_kategoriler = new List<string>();
 
     public string arananKelime; 
     public char[] arr_arananKelime;
@@ -29,52 +30,60 @@ public class Kod_KopruGecmece_Arayuz : MonoBehaviour
     public int can = 0;
     public TMP_Text tx_can;
 
+    public TMP_Text tx_Kategori;
+
     void Start()
     {
         // Büyük harfli kelimeler ekliyoruz
         // TODO kelime ve kategori seklinde ekleyecegiz.
-        lst_kelimeler.Add("TÜRKİYE");
-        lst_kelimeler.Add("AFYON");
-        lst_kelimeler.Add("ANKARA");
-        lst_kelimeler.Add("İZMİR");
-        lst_kelimeler.Add("BURSA");
-        lst_kelimeler.Add("VAN");
-        lst_kelimeler.Add("BAYBURT");
-        lst_kelimeler.Add("BİNGÖL");
-        lst_kelimeler.Add("ADANA");
-        lst_kelimeler.Add("AYDIN");
-        lst_kelimeler.Add("KARAMAN");
-        lst_kelimeler.Add("MALATYA");
-        lst_kelimeler.Add("BURDUR");
-        lst_kelimeler.Add("DENİZLİ");
-        lst_kelimeler.Add("ISPARTA");
-        lst_kelimeler.Add("MARDİN");
-        lst_kelimeler.Add("SAKARYA");
-        lst_kelimeler.Add("KAYSERİ");
-        lst_kelimeler.Add("ERZURUM");
-        lst_kelimeler.Add("NİĞDE");
-        lst_kelimeler.Add("KIRŞEHİR");
-        lst_kelimeler.Add("ERBAKAN");
-        lst_kelimeler.Add("SAADET");
-        lst_kelimeler.Add("ANADOLU");
-        lst_kelimeler.Add("GENÇLİK");
-        lst_kelimeler.Add("FİLİSTİN");
-        lst_kelimeler.Add("NİJERJA");
-        lst_kelimeler.Add("ENDONEZYA");
-        lst_kelimeler.Add("MISIR");
-        lst_kelimeler.Add("CİHAD");
-        lst_kelimeler.Add("PAKİSTAN");
-        lst_kelimeler.Add("İRAN");
-        lst_kelimeler.Add("MALEZYA");
-        lst_kelimeler.Add("BANGLADEŞ");
+        lst_kelimeler.Add("TÜRKİYE");       lst_kategoriler.Add("Ülkeler");
+        lst_kelimeler.Add("AFYON");         lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("ANKARA");        lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("İZMİR");         lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("BURSA");         lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("VAN");           lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("BAYBURT");       lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("BİNGÖL");        lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("ADANA");         lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("AYDIN");         lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("KARAMAN");       lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("MALATYA");       lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("BURDUR");        lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("DENİZLİ");       lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("ISPARTA");       lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("MARDİN");        lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("SAKARYA");       lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("KAYSERİ");       lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("ERZURUM");       lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("NİĞDE");         lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("KIRŞEHİR");      lst_kategoriler.Add("Şehirler");
+        lst_kelimeler.Add("ERBAKAN");       lst_kategoriler.Add("Milli Görüş");
+        lst_kelimeler.Add("SAADET");        lst_kategoriler.Add("Milli Görüş");
+        lst_kelimeler.Add("ANADOLU");       lst_kategoriler.Add("Milli Görüş");
+        lst_kelimeler.Add("GENÇLİK");       lst_kategoriler.Add("Milli Görüş");
+        lst_kelimeler.Add("FİLİSTİN");      lst_kategoriler.Add("Ülkeler");
+        lst_kelimeler.Add("NİJERYA");       lst_kategoriler.Add("Ülkeler");
+        lst_kelimeler.Add("ENDONEZYA");     lst_kategoriler.Add("Ülkeler");
+        lst_kelimeler.Add("MISIR");         lst_kategoriler.Add("Ülkeler");
+        lst_kelimeler.Add("CİHAD");         lst_kategoriler.Add("Milli Görüş");
+        lst_kelimeler.Add("PAKİSTAN");      lst_kategoriler.Add("Ülkeler");
+        lst_kelimeler.Add("İRAN");          lst_kategoriler.Add("Ülkeler");
+        lst_kelimeler.Add("MALEZYA");       lst_kategoriler.Add("Ülkeler");
+        lst_kelimeler.Add("BANGLADEŞ");     lst_kategoriler.Add("Ülkeler");
 
         ArananKelimeyiBelirle();
     }
 
     void ArananKelimeyiBelirle()
     {
+        // Rasgele sayi belirle
+        int rasgeleSayi = UnityEngine.Random.Range(0, lst_kelimeler.Count);
+
         // listeden rasgele belirlenecek !
-        arananKelime = lst_kelimeler[UnityEngine.Random.Range(0, lst_kelimeler.Count)];
+        arananKelime = lst_kelimeler[rasgeleSayi];
+
+        // Kategoriyi yazdir
+        tx_Kategori.text = lst_kategoriler[rasgeleSayi];
 
         // char array dönüştür
         arr_arananKelime = arananKelime.ToCharArray();
