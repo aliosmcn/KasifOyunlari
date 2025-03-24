@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Oyun4/Oyun4.unity
     guid: 4d0b3339c6d314c0abda0ad042e01eed
+  - enabled: 1
+    path: Assets/Scenes/Oyun3/HamasFly.unity
+    guid: 08a811ea9b6ba4c0580aef8c8a1222a1
+  - enabled: 1
+    path: Assets/Scenes/Oyun11/Oyun11_Kule.unity
+    guid: 9c4620b065722694a82898195a41bcaf
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
