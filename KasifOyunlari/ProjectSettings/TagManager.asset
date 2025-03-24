@@ -44,6 +44,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ArkaPlan
+    uniqueID: 4091628669
+    locked: 0
+  - name: engel
+    uniqueID: 3583021457
+    locked: 0
+  - name: Zemin
+    uniqueID: 1380034739
+    locked: 0
+  - name: Bird
+    uniqueID: 2812644979
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
