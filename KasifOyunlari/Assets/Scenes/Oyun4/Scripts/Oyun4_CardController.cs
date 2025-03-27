@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Oyun4_CardController : MonoBehaviour
 {
@@ -9,6 +12,9 @@ public class Oyun4_CardController : MonoBehaviour
      [SerializeField] Transform gridTransform;
      [SerializeField] Sprite[] sprites;
 
+     [SerializeField] TMP_Text timerText;
+     [SerializeField] Button pauseButton;
+
      private List<Sprite> spritePairs;
 
      Oyun4_Card firstSelected;
@@ -16,12 +22,16 @@ public class Oyun4_CardController : MonoBehaviour
 
      int matchCounts;
 
-
+     private float gameTime = 0f;
+     private bool isPaused = false;
 
     private void Start()
     {
          PrepairSprites();
          CreateCards();
+
+         StartCoroutine(UpdateTimer());
+         pauseButton.onClick.AddListener(PauseTrigger);
     }
 
 
@@ -44,6 +54,7 @@ public class Oyun4_CardController : MonoBehaviour
     }
 
     public void SetSelected(Oyun4_Card card){
+        if ( isPaused) return;
          if (card.isSelected == false){
              card.Show();
 
@@ -87,4 +98,41 @@ public class Oyun4_CardController : MonoBehaviour
              spriteList[randomIndex] = temp;
         }
     }
+
+    IEnumerator UpdateTimer()
+    {
+        while (true)
+        {
+            if (!isPaused)
+            {
+                gameTime += Time.deltaTime;
+                UpdateTimerDisplay();
+            }
+            yield return null;
+        }
+    }
+
+    void UpdateTimerDisplay()
+    {
+       int seconds = Mathf.FloorToInt(gameTime); 
+       timerText.text=seconds.ToString();
+    }
+
+    public void PauseTrigger()
+    {
+        isPaused = !isPaused;
+        pauseButton.GetComponentInChildren<TMP_Text>().text = isPaused ? "Devam" : "Durdur";
+    }
+
+
+   public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("Ana Sahne"); 
+    }
+
+   public void ReplayGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 }

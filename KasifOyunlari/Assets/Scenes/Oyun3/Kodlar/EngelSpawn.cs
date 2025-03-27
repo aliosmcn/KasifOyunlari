@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EngelSpawn : MonoBehaviour
 {
-    public float MaxTÝme = 1;
+    public float MaxTime = 1;
     public float Timer = 0;
     public GameObject engel;
     public float high;
@@ -15,7 +15,7 @@ public class EngelSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Timer>MaxTÝme)
+        if(Timer>MaxTime)
         {
             GameObject newengel = Instantiate(engel);
             newengel.transform.position = transform.position + new Vector3(0, Random.Range(-high, high), 0);
