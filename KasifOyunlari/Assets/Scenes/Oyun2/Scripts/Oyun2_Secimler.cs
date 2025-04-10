@@ -44,9 +44,5 @@ public class Oyun2_Secimler : MonoBehaviour
     {
         boykotPanels.RemoveAt(obj);
         trPanels.RemoveAt(obj2);
-        if (boykotPanels.Count == 0)
-        {
-            Oyun2_GeneralEvents.OnGameEnded.Invoke();
-        }
     }
 }

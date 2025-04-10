@@ -7,9 +7,9 @@ namespace Scenes.Oyun2.Scripts
         #region GeneralEvent
 
         public static Action OnGameStarted;
-        public static Action OnGameEnded;
+        public static Action OnGameFinish;
         
-        public static Action OnWrongeChoise;
+        public static Action OnGameOver;
 
         #endregion
         

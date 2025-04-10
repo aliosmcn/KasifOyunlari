@@ -92,6 +92,6 @@ public class Oyun2_PlayerController : MonoBehaviour
 
     private void LoseGame()
     {
-        Oyun2_GeneralEvents.OnGameEnded.Invoke();
+        Oyun2_GeneralEvents.OnGameOver.Invoke();
     }
 }
