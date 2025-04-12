@@ -17,11 +17,6 @@ public class Kod_AnaSahne_Arayuz : MonoBehaviour
 
     #endregion
 
-    void Start()
-    {
-        
-    }
-
     
     public void Buton_Oyun(int oyunNumarasi)
     {
@@ -29,7 +24,15 @@ public class Kod_AnaSahne_Arayuz : MonoBehaviour
 
         // Panel Degistir
         tr_Panel_AnaMenu.gameObject.SetActive(false);
-        tr_Panel_KacKisiSecimi.gameObject.SetActive(true);
+        
+        
+        //tr_Panel_KacKisiSecimi.gameObject.SetActive(true);
+        
+        tr_Panel_Yukleniyor.gameObject.SetActive(true);
+
+        // Beklet ve sahne degistir
+        StartCoroutine(OyunSahnesineGit());
+        
     }
 
     public void Buton_KacKisi(int kisiSayisi)
@@ -54,5 +57,9 @@ public class Kod_AnaSahne_Arayuz : MonoBehaviour
         SceneManager.LoadScene(secilen_OyunNumarasi);
     }
 
+    public void Buton_OyunuKapat()
+    {
+        Application.Quit();
+    }
 
 }

@@ -39,7 +39,7 @@ public class Kod_Kule_Arayuz : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(0)) // Input.GetKeyDown(KeyCode.Space)
+        if (Input.GetMouseButtonDown(0)) // Input.GetKeyDown(KeyCode.Space)
         {
             KutuyuSerbestBirak();
         }
