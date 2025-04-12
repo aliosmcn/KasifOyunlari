@@ -74,6 +74,8 @@ public class Oyun2_GameManager : MonoBehaviour
 
     public void AnaMenu()
     {
+        Time.timeScale = 1;
+        
         pausePanel.SetActive(false);
         XButton.SetActive(true);
         SceneManager.LoadScene(0);
@@ -81,6 +83,8 @@ public class Oyun2_GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        Time.timeScale = 1;
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

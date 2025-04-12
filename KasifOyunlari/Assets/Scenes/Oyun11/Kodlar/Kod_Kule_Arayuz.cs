@@ -39,7 +39,7 @@ public class Kod_Kule_Arayuz : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(0)) // Input.GetKeyDown(KeyCode.Space)
         {
             KutuyuSerbestBirak();
         }
@@ -53,8 +53,6 @@ public class Kod_Kule_Arayuz : MonoBehaviour
         Camera.main.transform.position += (Vector3.up * 1.5f);
         
         kanca_hiz++;    
-        
-        
         
         YeniKutuSallat();
     }

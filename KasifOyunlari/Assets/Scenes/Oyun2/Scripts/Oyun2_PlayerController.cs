@@ -43,12 +43,12 @@ public class Oyun2_PlayerController : MonoBehaviour
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && currentLane > 0)
+        if (Input.GetMouseButtonDown(0) && currentLane > 0) // Input.GetKeyDown(KeyCode.LeftArrow)
         {
             currentLane--;
             targetPosition = new Vector3(-laneDistance, transform.position.y, transform.position.z);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && currentLane < 1)
+        else if (Input.GetMouseButtonDown(0) && currentLane < 1) // Input.GetKeyDown(KeyCode.RightArrow)
         {
             currentLane++;
             targetPosition = new Vector3(laneDistance, transform.position.y, transform.position.z);

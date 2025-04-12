@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Zıpla : MonoBehaviour
@@ -7,7 +8,9 @@ public class Zıpla : MonoBehaviour
     Rigidbody2D rb;
     public Text skorT;
     public float skor;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
+    public Text sonucT;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,7 +38,22 @@ public class Zıpla : MonoBehaviour
     {
         if(temas.gameObject.tag =="Engel")
         {
+            sonucT.text = "Kaybettiniz...";
+            
             Time.timeScale = 0;
         }
+    }
+    
+    public void Buton_AnaSahneyeGit()
+    {
+        Time.timeScale = 1;
+        
+        SceneManager.LoadScene(0);
+    }
+    public void Buton_YenidenOyna()
+    {
+        Time.timeScale = 1;
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
